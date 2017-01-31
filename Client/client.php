@@ -44,7 +44,25 @@ class mgfiles
 	}
 }
 
-$content = "<?php echo 'TEST 1'; ?>";
+$content = '
+<?php
+$curl = curl_init(\'http://www.google.com\'); 
+curl_setopt($curl, CURLOPT_FAILONERROR, true); 
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true); 
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); 
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); 
+
+$result = curl_exec($curl); 
+$getinfo = curl_getinfo($curl);
+$size = $getinfo["size_download"]/1000000;
+echo "website size: ".round($size,2)."Mb<pre>";
+print_r($getinfo);
+echo "<br><br>";
+//echo $result; 
+?>
+';
+/*$content = "<?php echo 'TEST 1'; ?>";*/
 $filename= "output.php";
 
 $mgfiles = new mgfiles(array('filename'=>$filename, 'content'=>$content));
