@@ -2,9 +2,14 @@
 namespace mgfiles;
 class mgfiles 
 {
+	 /**
+     * version of the file
+     * @var string 
+     */
+    private $version = '0.20170205';
     /**
      * Name of the file
-     * @var string
+     * @var string 
      */
     private $filename = '';
 	
@@ -20,6 +25,7 @@ class mgfiles
 	}
 
 	public function run() {
+		echo "ver:".$this->version;
 		$this->createFile();
 		$this->saveToFile();
 	}
